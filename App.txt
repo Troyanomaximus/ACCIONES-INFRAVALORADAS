@@ -1,0 +1,34 @@
+import streamlit as st
+import pandas as pd
+
+# Listas de tickers por índice (EJEMPLO - Reemplazar con datos reales)
+SP500_TICKERS = ["AAPL", "MSFT", "GOOG", "AMZN", "TSLA"]
+IBEX35_TICKERS = ["SAN.MC", "BBVA.MC", "ITX.MC", "IBE.MC", "REP.MC"]
+MERCADOS_ASIATICOS_TICKERS = ["2800.HK", "0005.HK", "0700.HK", "9988.HK", "1299.HK"]
+
+# Título de la web
+st.title("Buscador de Acciones Infravaloradas")
+
+# Selector de índice
+indice_seleccionado = st.selectbox(
+    "Selecciona un índice:",
+    ("S&P 500", "IBEX 35", "Mercados Asiáticos")
+)
+
+# Función para obtener los tickers según el índice seleccionado
+def obtener_tickers(indice):
+    if indice == "S&P 500":
+        return SP500_TICKERS
+    elif indice == "IBEX 35":
+        return IBEX35_TICKERS
+    elif indice == "Mercados Asiáticos":
+        return MERCADOS_ASIATICOS_TICKERS
+    else:
+        return []
+
+# Obtener los tickers del índice seleccionado
+tickers = obtener_tickers(indice_seleccionado)
+
+# Mostrar los tickers en la web
+st.write(f"Acciones del {indice_seleccionado}:")
+st.write(tickers)
